@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="description" content="Play Carrom — a premium 2.5D browser-based carrom board game. Player vs Bot with realistic physics.">
+    <title>Carrom — Board Game</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<div class="game-container">
+
+    <!-- ═══ Top Bar: Scores + Controls ═══ -->
+    <div class="top-bar">
+        <div class="score-panel player" id="playerPanel">
+            <div class="score-dot"></div>
+            <div>
+                <div class="score-label">You</div>
+                <div class="score-value" id="playerScore">0</div>
+            </div>
+        </div>
+
+        <div class="controls">
+            <button class="ctrl-btn" id="soundBtn" title="Toggle Sound">🔊</button>
+            <button class="ctrl-btn" id="pauseBtn" title="Pause">⏸</button>
+            <button class="ctrl-btn" id="restartBtn" title="Restart">↻</button>
+        </div>
+
+        <div class="score-panel bot" id="botPanel">
+            <div>
+                <div class="score-label">Bot</div>
+                <div class="score-value" id="botScore">0</div>
+            </div>
+            <div class="score-dot"></div>
+        </div>
+    </div>
+
+    <!-- ═══ Canvas ═══ -->
+    <div class="canvas-container">
+        <canvas id="gameCanvas"></canvas>
+        <div class="turn-indicator" id="turnIndicator"></div>
+    </div>
+
+    <!-- ═══ Striker Position Slider ═══ -->
+    <div class="striker-slider-container" id="strikerSliderContainer">
+        <span class="slider-label">◀</span>
+        <input type="range" id="strikerSlider" class="striker-slider" min="0" max="100" value="50">
+        <span class="slider-label">▶</span>
+    </div>
+
+</div>
+
+<!-- ═══ Message Overlay ═══ -->
+<div class="message-overlay" id="messageOverlay">
+    <span id="messageText"></span>
+</div>
+
+<!-- ═══ Menu Overlay ═══ -->
+<div class="menu-overlay" id="menuOverlay">
+    <h1 class="menu-title">CARROM</h1>
+    <p class="menu-subtitle">Board Game</p>
+    <button class="start-btn" id="startBtn">Play</button>
+</div>
+
+<!-- ═══ Game Over Overlay ═══ -->
+<div class="game-over-overlay" id="gameOverOverlay">
+    <h2 class="game-over-title" id="gameOverTitle"></h2>
+    <p class="game-over-scores" id="gameOverScores"></p>
+    <button class="rematch-btn" id="rematchBtn">Rematch</button>
+</div>
+
+<!-- ═══ Pause Overlay ═══ -->
+<div class="pause-overlay" id="pauseOverlay">
+    <h2 class="pause-title">PAUSED</h2>
+    <button class="resume-btn" id="resumeBtn">Resume</button>
+</div>
+
+<!-- Matter.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/matter-js/0.20.0/matter.min.js"></script>
+
+<!-- Game modules -->
+<script type="module" src="src/main.js"></script>
+
+</body>
+</html>

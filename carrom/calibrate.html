@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<body>
+<canvas id="c"></canvas>
+<script>
+    const img = new Image();
+    img.onload = () => {
+        const c = document.getElementById('c');
+        c.width = img.width;
+        c.height = img.height;
+        const ctx = c.getContext('2d');
+        ctx.drawImage(img, 0, 0);
+        const data = ctx.getImageData(0, 0, c.width, c.height).data;
+
+        // Find dark pixels
+        const darkPixels = [];
+        for (let y = 0; y < c.height; y++) {
+            for (let x = 0; x < c.width; x++) {
+                const i = (y * c.width + x) * 4;
+                const r = data[i], g = data[i+1], b = data[i+2];
+                // Pockets are black/very dark
+                if (r < 30 && g < 30 && b < 30) {
+                    darkPixels.push({x, y});
+                }
+            }
+        }
+
+        // Cluster them into 4 corners (top-left, top-right, bottom-left, bottom-right)
+        const clusters = { tl: [], tr: [], bl: [], br: [] };
+        const w2 = c.width / 2;
+        const h2 = c.height / 2;
+
+        darkPixels.forEach(p => {
+            if (p.x < w2 && p.y < h2) clusters.tl.push(p);
+            else if (p.x > w2 && p.y < h2) clusters.tr.push(p);
+            else if (p.x < w2 && p.y > h2) clusters.bl.push(p);
+            else clusters.br.push(p);
+        });
+
+        const getCenterAndRadius = (cluster) => {
+            if (cluster.length === 0) return null;
+            let sumX = 0, sumY = 0;
+            cluster.forEach(p => { sumX += p.x; sumY += p.y; });
+            const cx = sumX / cluster.length;
+            const cy = sumY / cluster.length;
+            
+            // max dist from center
+            let maxSq = 0;
+            cluster.forEach(p => {
+                const d = (p.x - cx)**2 + (p.y - cy)**2;
+                if (d > maxSq) maxSq = d;
+            });
+            return { x: cx / c.width, y: cy / c.height, r: Math.sqrt(maxSq) / c.width };
+        };
+
+        const result = {
+            width: c.width,
+            height: c.height,
+            pockets: {
+                tl: getCenterAndRadius(clusters.tl),
+                tr: getCenterAndRadius(clusters.tr),
+                bl: getCenterAndRadius(clusters.bl),
+                br: getCenterAndRadius(clusters.br)
+            }
+        };
+
+        console.log("CALIBRATION_RESULT:", JSON.stringify(result));
+    };
+    img.src = 'src/assets/board.jpg';
+</script>
+</body>
+</html>
