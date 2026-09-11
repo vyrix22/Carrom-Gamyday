@@ -16,11 +16,12 @@ export class Coin {
         this.pocketing = false;
 
         const { Bodies } = Matter;
-        this.body = Bodies.circle(x, y, this.radius, {
+        // Physics body has a +1 radius to create an invisible 1px buffer to prevent visual overlapping
+        this.body = Bodies.circle(x, y, this.radius + 1, {
             restitution: 0.8, // High restitution for realistic carrom clicks
             friction: 0.01,   // Minimal contact friction
-            frictionAir: 0.015, // Smooth sliding with powder
-            density: 0.002,
+            frictionAir: 0.008, // Reduced friction to allow tokens to travel more distance
+            density: 0.02, // 10x heavier than before for smoother, slower movement
             label: `coin_${type}`,
         });
         this.body.coinRef = this; // back-reference

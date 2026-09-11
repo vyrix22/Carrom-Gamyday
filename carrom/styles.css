@@ -19,7 +19,7 @@
     --radius-sm: 8px;
     --radius-md: 14px;
     --radius-lg: 20px;
-    --shadow-md: 0 4px 20px rgba(0,0,0,0.4);
+    --shadow-md: 0 4px 20px rgba(0, 0, 0, 0.4);
     --shadow-glow: 0 0 20px var(--accent-gold-glow);
     --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
@@ -27,13 +27,16 @@
 /* ═══════════════════════════════════
    Reset & Base
    ═══════════════════════════════════ */
-*, *::before, *::after {
+*,
+*::before,
+*::after {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
 }
 
-html, body {
+html,
+body {
     width: 100%;
     height: 100%;
     overflow: hidden;
@@ -92,9 +95,17 @@ html, body {
 }
 
 @keyframes scorePulse {
-    0% { transform: scale(1); }
-    50% { transform: scale(1.08); }
-    100% { transform: scale(1); }
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.08);
+    }
+
+    100% {
+        transform: scale(1);
+    }
 }
 
 .score-label {
@@ -155,7 +166,7 @@ html, body {
 .ctrl-btn:hover {
     background: rgba(255, 255, 255, 0.12);
     transform: translateY(-1px);
-    box-shadow: 0 6px 24px rgba(0,0,0,0.5);
+    box-shadow: 0 6px 24px rgba(0, 0, 0, 0.5);
 }
 
 .ctrl-btn:active {
@@ -225,8 +236,15 @@ html, body {
 }
 
 @keyframes turnSlideIn {
-    from { opacity: 0; transform: translateX(-50%) translateY(-10px); }
-    to { opacity: 1; transform: translateX(-50%) translateY(0); }
+    from {
+        opacity: 0;
+        transform: translateX(-50%) translateY(-10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(-50%) translateY(0);
+    }
 }
 
 
@@ -435,10 +453,11 @@ html, body {
 .striker-slider-container {
     display: flex;
     align-items: center;
-    gap: 12px;
+    gap: 10px;
     width: 100%;
-    max-width: 700px;
-    padding: 10px 20px 12px;
+    max-width: 420px;
+    padding: 8px 16px 10px;
+    margin: 0 auto;
     z-index: 10;
     opacity: 0;
     pointer-events: none;
@@ -467,9 +486,9 @@ html, body {
     height: 6px;
     border-radius: 3px;
     background: linear-gradient(90deg,
-        rgba(255, 255, 255, 0.06) 0%,
-        rgba(212, 168, 87, 0.25) 50%,
-        rgba(255, 255, 255, 0.06) 100%);
+            rgba(255, 255, 255, 0.06) 0%,
+            rgba(212, 168, 87, 0.25) 50%,
+            rgba(255, 255, 255, 0.06) 100%);
     outline: none;
     cursor: pointer;
     position: relative;
@@ -484,9 +503,9 @@ html, body {
     height: 28px;
     border-radius: 50%;
     background: radial-gradient(circle at 40% 35%,
-        #f0d888 0%,
-        var(--accent-gold) 60%,
-        #a07830 100%);
+            #f0d888 0%,
+            var(--accent-gold) 60%,
+            #a07830 100%);
     border: 2px solid rgba(255, 255, 255, 0.2);
     box-shadow:
         0 2px 10px rgba(212, 168, 87, 0.5),
@@ -519,9 +538,9 @@ html, body {
     height: 28px;
     border-radius: 50%;
     background: radial-gradient(circle at 40% 35%,
-        #f0d888 0%,
-        var(--accent-gold) 60%,
-        #a07830 100%);
+            #f0d888 0%,
+            var(--accent-gold) 60%,
+            #a07830 100%);
     border: 2px solid rgba(255, 255, 255, 0.2);
     box-shadow:
         0 2px 10px rgba(212, 168, 87, 0.5),
@@ -539,9 +558,9 @@ html, body {
     height: 6px;
     border-radius: 3px;
     background: linear-gradient(90deg,
-        rgba(255, 255, 255, 0.06) 0%,
-        rgba(212, 168, 87, 0.25) 50%,
-        rgba(255, 255, 255, 0.06) 100%);
+            rgba(255, 255, 255, 0.06) 0%,
+            rgba(212, 168, 87, 0.25) 50%,
+            rgba(255, 255, 255, 0.06) 100%);
     border: none;
 }
 
@@ -600,8 +619,8 @@ html, body {
     .score-panel {
         padding: 4px 8px;
     }
+
     .score-value {
         font-size: 18px;
     }
 }
-

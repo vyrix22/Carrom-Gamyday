@@ -5,32 +5,46 @@ export const BOARD = {
     SIZE: 700,
 
     // Playable inner area (calibrated from cropped asset)
-    get INNER_LEFT() { return 87; },
-    get INNER_RIGHT() { return 605; },
-    get INNER_TOP() { return 70; },
-    get INNER_BOTTOM() { return 627; },
+    get INNER_LEFT() { return 41; },
+    get INNER_RIGHT() { return 656; },
+    get INNER_TOP() { return 42; },
+    get INNER_BOTTOM() { return 650; },
 
     // Pocket geometry (calibrated from cropped asset)
-    POCKET_RADIUS: 25,
+    POCKET_RADIUS: 28,
     get POCKET_POSITIONS() {
         return [
-            { x: 88, y: 73 },       // top-left
-            { x: 606, y: 67 },       // top-right
-            { x: 88, y: 627 },      // bottom-left
-            { x: 605, y: 627 },      // bottom-right
+            { x: 72, y: 75 },       // top-left
+            { x: 623, y: 74 },       // top-right
+            { x: 71, y: 614 },      // bottom-left
+            { x: 623, y: 613 },      // bottom-right
         ];
     },
 
-    // Baselines, calibrated from the decorative red baseline markers in the board art.
+    // Baselines — 4-player: one per side, each independently calibrated.
+    // Bottom (Player)
     get PLAYER_BASELINE_Y() { return 552; },
+    get PLAYER_BASELINE_LEFT() { return 169; },
+    get PLAYER_BASELINE_RIGHT() { return 527; },
+
+    // Top (Bot)
     get BOT_BASELINE_Y() { return 131; },
-    // Baselines: perfectly encompass the red baseline circles
-    get BASELINE_LEFT() { return 169; },
-    get BASELINE_RIGHT() { return 523; },
+    get BOT_BASELINE_LEFT() { return 169; },
+    get BOT_BASELINE_RIGHT() { return 527; },
+
+    // Left side
+    get LEFT_BASELINE_X() { return 134; },
+    get LEFT_BASELINE_TOP() { return 169; },
+    get LEFT_BASELINE_BOTTOM() { return 518; },
+
+    // Right side
+    get RIGHT_BASELINE_X() { return 560; },
+    get RIGHT_BASELINE_TOP() { return 169; },
+    get RIGHT_BASELINE_BOTTOM() { return 520; },
 
     // Center, calibrated from the midpoint between opposite board markers.
-    get CENTER_X() { return 346; },
-    get CENTER_Y() { return 342; },
+    get CENTER_X() { return 347; },
+    get CENTER_Y() { return 337; },
 
     // Coin sizes
     COIN_RADIUS: 13,

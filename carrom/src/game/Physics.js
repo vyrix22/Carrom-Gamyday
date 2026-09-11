@@ -8,6 +8,8 @@ export class Physics {
 
         this.engine = Engine.create({
             enableSleeping: false,
+            positionIterations: 12, // High accuracy to prevent overlapping
+            velocityIterations: 8,  // High accuracy to prevent overlapping
         });
         // Top-down: no gravity
         this.engine.gravity.x = 0;
@@ -66,7 +68,10 @@ export class Physics {
         const { Bodies, World } = Matter;
 
         this.pocketSensors = BOARD.POCKET_POSITIONS.map((p, i) => {
-            const sensor = Bodies.circle(p.x, p.y, BOARD.POCKET_RADIUS, {
+            // Use a tiny inner radius (e.g., 20% of the visual pocket size) 
+            // so coins must actually move *into* the hole to trigger it.
+            const sensorRadius = BOARD.POCKET_RADIUS * 0.2;
+            const sensor = Bodies.circle(p.x, p.y, sensorRadius, {
                 isStatic: true,
                 isSensor: true,
                 label: `pocket_${i}`,

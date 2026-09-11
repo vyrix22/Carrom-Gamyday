@@ -50,12 +50,12 @@ export class Input {
     _onSliderInput() {
         if (!this._slider || this.phase === 'idle') return;
         const t = this._slider.value / 100; // 0..1
-        this.strikerX = BOARD.BASELINE_LEFT + t * (BOARD.BASELINE_RIGHT - BOARD.BASELINE_LEFT);
+        this.strikerX = BOARD.PLAYER_BASELINE_LEFT + t * (BOARD.PLAYER_BASELINE_RIGHT - BOARD.PLAYER_BASELINE_LEFT);
     }
 
     _syncSlider() {
         if (!this._slider) return;
-        const t = (this.strikerX - BOARD.BASELINE_LEFT) / (BOARD.BASELINE_RIGHT - BOARD.BASELINE_LEFT);
+        const t = (this.strikerX - BOARD.PLAYER_BASELINE_LEFT) / (BOARD.PLAYER_BASELINE_RIGHT - BOARD.PLAYER_BASELINE_LEFT);
         this._slider.value = Math.round(t * 100);
     }
 
@@ -75,7 +75,7 @@ export class Input {
 
         // Show slider and sync its value to current striker position
         if (this._slider && this._sliderContainer) {
-            const t = (this.strikerX - BOARD.BASELINE_LEFT) / (BOARD.BASELINE_RIGHT - BOARD.BASELINE_LEFT);
+            const t = (this.strikerX - BOARD.PLAYER_BASELINE_LEFT) / (BOARD.PLAYER_BASELINE_RIGHT - BOARD.PLAYER_BASELINE_LEFT);
             this._slider.value = Math.round(t * 100);
             this._slider.addEventListener('input', this._boundSliderInput);
             this._sliderContainer.classList.add('visible');

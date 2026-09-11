@@ -101,7 +101,7 @@ export class Bot {
                 const strikerX = idealStrikerHitX; // simplified: aim directly
 
                 // Clamp to baseline
-                const clampedStrikerX = Math.max(BOARD.BASELINE_LEFT, Math.min(BOARD.BASELINE_RIGHT, strikerX));
+                const clampedStrikerX = Math.max(BOARD.BOT_BASELINE_LEFT, Math.min(BOARD.BOT_BASELINE_RIGHT, strikerX));
 
                 // Angle from striker to coin
                 const aimDx = coin.x - clampedStrikerX;
@@ -160,7 +160,7 @@ export class Bot {
 
         // ── Add intentional errors ──
         bestShot.strikerX += (Math.random() - 0.5) * 30; // ±15px
-        bestShot.strikerX = Math.max(BOARD.BASELINE_LEFT, Math.min(BOARD.BASELINE_RIGHT, bestShot.strikerX));
+        bestShot.strikerX = Math.max(BOARD.BOT_BASELINE_LEFT, Math.min(BOARD.BOT_BASELINE_RIGHT, bestShot.strikerX));
         bestShot.angle += (Math.random() - 0.5) * 0.15;  // ±~4.3°
         bestShot.power += (Math.random() - 0.5) * 0.15;  // ±7.5%
         bestShot.power = Math.max(0.2, Math.min(0.9, bestShot.power));

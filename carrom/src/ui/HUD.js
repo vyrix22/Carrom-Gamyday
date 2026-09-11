@@ -33,33 +33,11 @@ export class HUD {
     }
 
     setTurn(turn) {
-        const el = this.elements.turnIndicator;
-        if (!el) return;
-
-        if (turn === 'player') {
-            el.textContent = 'YOUR TURN';
-            el.className = 'turn-indicator player-turn';
-        } else if (turn === 'bot') {
-            el.textContent = 'BOT\'S TURN';
-            el.className = 'turn-indicator bot-turn';
-        } else {
-            el.textContent = '';
-            el.className = 'turn-indicator';
-        }
+        // Disabled — no turn indicator
     }
 
     showMessage(text, duration = 2000) {
-        const overlay = this.elements.messageOverlay;
-        const textEl = this.elements.messageText;
-        if (!overlay || !textEl) return;
-
-        textEl.textContent = text;
-        overlay.classList.add('visible');
-
-        clearTimeout(this._messageTimer);
-        this._messageTimer = setTimeout(() => {
-            overlay.classList.remove('visible');
-        }, duration);
+        // Disabled — no mid-screen messages
     }
 
     showGameOver(winner, playerScore, botScore) {

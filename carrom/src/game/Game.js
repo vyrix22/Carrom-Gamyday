@@ -151,31 +151,6 @@ export class Game {
         // ── Update physics ──
         if (this.state === State.SIMULATING || this.state === State.BOT_SHOOTING) {
             this.physics.update(1000 / 60);
-
-            // Apply additional friction (damping) to slow things down naturally
-            for (const coin of this.coins) {
-                if (coin.pocketed) continue;
-                const b = coin.body;
-                const speed = Math.sqrt(b.velocity.x ** 2 + b.velocity.y ** 2);
-                if (speed > 0.01) {
-                    const damping = 0.985;
-                    Matter.Body.setVelocity(b, {
-                        x: b.velocity.x * damping,
-                        y: b.velocity.y * damping,
-                    });
-                }
-            }
-            if (this.striker.body) {
-                const sb = this.striker.body;
-                const speed = Math.sqrt(sb.velocity.x ** 2 + sb.velocity.y ** 2);
-                if (speed > 0.01) {
-                    const damping = 0.982;
-                    Matter.Body.setVelocity(sb, {
-                        x: sb.velocity.x * damping,
-                        y: sb.velocity.y * damping,
-                    });
-                }
-            }
         }
 
         // ── Update pocket animations ──

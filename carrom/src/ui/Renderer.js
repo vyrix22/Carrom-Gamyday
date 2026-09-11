@@ -135,6 +135,35 @@ export class Renderer {
             ctx.arc(p.x * scale + offset.x, p.y * scale + offset.y, BOARD.POCKET_RADIUS * scale, 0, Math.PI * 2);
             ctx.stroke();
         }
+
+        // Draw Player Baseline (separate line)
+        ctx.strokeStyle = 'rgba(59, 130, 246, 0.8)'; // Blue
+        ctx.lineWidth = 1.5;
+        ctx.beginPath();
+        ctx.moveTo(BOARD.PLAYER_BASELINE_LEFT * scale + offset.x, BOARD.PLAYER_BASELINE_Y * scale + offset.y);
+        ctx.lineTo(BOARD.PLAYER_BASELINE_RIGHT * scale + offset.x, BOARD.PLAYER_BASELINE_Y * scale + offset.y);
+        ctx.stroke();
+
+        // Draw Bot Baseline (separate line)
+        ctx.strokeStyle = 'rgba(96, 165, 250, 0.8)'; // Lighter blue
+        ctx.beginPath();
+        ctx.moveTo(BOARD.BOT_BASELINE_LEFT * scale + offset.x, BOARD.BOT_BASELINE_Y * scale + offset.y);
+        ctx.lineTo(BOARD.BOT_BASELINE_RIGHT * scale + offset.x, BOARD.BOT_BASELINE_Y * scale + offset.y);
+        ctx.stroke();
+
+        // Draw Left Baseline (vertical)
+        ctx.strokeStyle = 'rgba(251, 146, 60, 0.8)'; // Orange
+        ctx.beginPath();
+        ctx.moveTo(BOARD.LEFT_BASELINE_X * scale + offset.x, BOARD.LEFT_BASELINE_TOP * scale + offset.y);
+        ctx.lineTo(BOARD.LEFT_BASELINE_X * scale + offset.x, BOARD.LEFT_BASELINE_BOTTOM * scale + offset.y);
+        ctx.stroke();
+
+        // Draw Right Baseline (vertical)
+        ctx.strokeStyle = 'rgba(253, 186, 116, 0.8)'; // Lighter orange
+        ctx.beginPath();
+        ctx.moveTo(BOARD.RIGHT_BASELINE_X * scale + offset.x, BOARD.RIGHT_BASELINE_TOP * scale + offset.y);
+        ctx.lineTo(BOARD.RIGHT_BASELINE_X * scale + offset.x, BOARD.RIGHT_BASELINE_BOTTOM * scale + offset.y);
+        ctx.stroke();
         
         ctx.restore();
     }

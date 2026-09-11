@@ -24,11 +24,12 @@ export class Striker {
             this.physics.removeBody(this.body);
         }
 
-        this.body = Matter.Bodies.circle(x, y, this.radius, {
+        // Physics body has a +1 radius to create an invisible 1px buffer to prevent visual overlapping
+        this.body = Matter.Bodies.circle(x, y, this.radius + 1, {
             restitution: 0.8,
             friction: 0.005,
-            frictionAir: 0.0004,
-            density: 0.005, // Lighter = faster movement
+            frictionAir: 0.0075, // Halved so the striker travels roughly 2x distance
+            density: 0.04, 
             label: 'striker',
         });
         this.body.coinRef = null; // not a coin
@@ -41,7 +42,9 @@ export class Striker {
      */
     setPositionX(x) {
         if (!this.body || !this.active) return;
-        const clamped = Math.max(BOARD.BASELINE_LEFT, Math.min(BOARD.BASELINE_RIGHT, x));
+        const baseLeft = this.currentPlayer === 'player' ? BOARD.PLAYER_BASELINE_LEFT : BOARD.BOT_BASELINE_LEFT;
+        const baseRight = this.currentPlayer === 'player' ? BOARD.PLAYER_BASELINE_RIGHT : BOARD.BOT_BASELINE_RIGHT;
+        const clamped = Math.max(baseLeft, Math.min(baseRight, x));
         const y = this.currentPlayer === 'player' ? BOARD.PLAYER_BASELINE_Y : BOARD.BOT_BASELINE_Y;
         this.physics.setPosition(this.body, { x: clamped, y });
     }
@@ -54,8 +57,8 @@ export class Striker {
     shoot(angle, power) {
         if (!this.body) return;
 
-        // Calibrated force to perfectly reach halfway back after 2 bounces at 100% power
-        const maxForce = 0.45;
+        // Increased force to give it more kick
+        const maxForce = 1.0;
         const force = power * maxForce;
         const fx = Math.cos(angle) * force;
         const fy = Math.sin(angle) * force;
